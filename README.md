@@ -1,81 +1,76 @@
-# Oytra Assignment Submission
+# Oytra Assignment Submission — Lalit Kumar
 
-**Submitted by:** Lalit Kumar
+## Task 1 — QA Testing Report
 
-This repository contains the completed Oytra assignment submission, including the QA testing report, n8n API integration workflow, and bonus uptime monitoring workflow.
+For Task 1, I tested the RealWorld demo application locally and performed manual QA testing on the major user flows including:
 
-## Contents
+* user registration
+* login/logout
+* article creation
+* comments
+* protected routes
+* validation handling
 
-| Task | Description | Files |
-| --- | --- | --- |
-| Task 1 | QA testing report for the RealWorld demo application | `Task1_QA_Report_LalitKumar.pdf` |
-| Task 2 | n8n GitHub repository monitoring workflow | `task2/Task2_Workflow_LalitKumar.json` |
-| Bonus Task | n8n uptime monitoring workflow | `bonus/Bonus_UptimeMonitor_LalitKumar.json` |
+During testing, I identified multiple issues related to:
 
-## Task 1: QA Testing Report
+* frontend crashes
+* missing validation
+* broken error handling
+* empty input submission
+* UI/UX problems
 
-Performed manual QA testing on the RealWorld demo application.
+The detailed bug report and root cause analysis are included in:
+`Task1_QA_Report_LalitKumar.pdf` and `Root_Cause_Analysis.pdf`
 
-### Areas Tested
+---
 
-- Authentication
-- Article creation and editing
-- Comments
-- Validation handling
-- Protected routes
-- UI/UX behavior
+## Task 2 — n8n API Integration Workflow
 
-### Issues Identified
+For Task 2, I built an automated workflow using n8n.
 
-- Frontend crashes
-- Validation failures
-- Missing error handling
-- Empty input submission
-- UI responsiveness issues
+### APIs Used
 
-The detailed QA report is attached as:
+1. GitHub REST API
+2. GitHub Repository Details Endpoint
 
-- `Task1_QA_Report_LalitKumar.pdf`
+### Why These APIs Were Chosen
 
-## Task 2: n8n API Integration Workflow
+I selected the GitHub API because it provides real-world public developer data, supports filtering/sorting, and allows meaningful transformations for automation workflows.
 
-Built an automated GitHub repository monitoring workflow using n8n.
+### Workflow Logic
+
+* A Schedule Trigger runs the workflow automatically.
+* The first HTTP Request fetches trending/open-source repositories related to AI.
+* A transformation step filters and keeps the top 5 repositories based on popularity.
+* A second API request enriches repository information.
+* An IF node checks conditions such as repository popularity thresholds.
+* Final processed data is stored inside Google Sheets.
+
+### Error Handling
+
+The workflow includes:
+
+* retry handling
+* continue-on-fail behavior
+* fallback error logging using an Error Trigger workflow
+
+This ensures the workflow does not fail silently.
+
+---
+
+## Bonus Task — Uptime Monitor
+
+For the bonus task, I created a second n8n workflow that monitors website uptime every 5 minutes.
 
 ### Features
 
-- Schedule trigger
-- GitHub API integration
-- Data transformation
-- Top 5 repository filtering
-- Conditional branching
-- Google Sheets output
-- Error handling workflow
+* periodic monitoring
+* HTTP status checking
+* conditional alerting
+* Google Sheets logging
+* retry handling
+* workflow error logging
 
-### Files
+If the monitored endpoint returns anything other than the expected healthy response, an alert entry is automatically added to Google Sheets.
 
-- `task2/Task2_Workflow_LalitKumar.json`
-- `task2/Task2_Workflow_OutputData_LalitKumar.png`
-- `task2/Task2_Workflow_ScreenShort_LalitKumar.png`
-
-## Bonus Task: Uptime Monitor
-
-Built an uptime monitoring workflow in n8n.
-
-### Features
-
-- Website health monitoring every 5 minutes
-- HTTP status checking
-- Conditional alerting
-- Google Sheets logging
-- Retry handling
-- Workflow error logging
-
-### Files
-
-- `bonus/Bonus_UptimeMonitor_LalitKumar.json`
-- `bonus/Bonus_UptimeMonitor_OutputData_LalitKumar.png`
-- `bonus/Bonus_UptimeMonitor_Workflow_LalitKumar.png`
-
-## Thank You
-
-Thank you for reviewing my submission.
+Thank you.
